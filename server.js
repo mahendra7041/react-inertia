@@ -5,11 +5,10 @@ import { inertiaMiddleware } from "./app/utils/inertia.js";
 async function bootstrap() {
   const app = express();
   const PORT = process.env.PORT || 5000;
-  const isProd = process.env.NODE_ENV === "production";
 
   app.use(express.static("public"));
 
-  if (isProd) {
+  if (process.env.NODE_ENV === "production") {
     app.use(
       express.static("build/client", {
         index: false,

@@ -1,12 +1,73 @@
-# React + Vite
+# React + Express + Inertia Starter Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A starter template to build modern single-page applications with **Express.js**, **Inertia.js**, and **React**, pre-configured with **Vite** and SSR support.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Quick Start
 
-## Expanding the ESLint configuration
+### 1. Create a New Project Using the Template
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm create vite@latest my-inertia-app -- --template github:/mahendra7041/react-inertia
+```
+
+Replace `my-inertia-app` with your desired project name.
+
+### 2. Install Dependencies
+
+```bash
+cd my-inertia-app
+npm install
+```
+
+### 3. Start Development Server
+
+```bash
+npm run dev
+```
+
+Open your browser at `http://localhost:5000` to see the app running.
+
+---
+
+## 📦 Project Structure
+
+```
+my-inertia-app/
+├── build/                 # Generated build artifacts (client & SSR)
+├── configs/
+│   └── inertia.config.js  # Inertia.js configuration
+├── app/
+│   ├── router.js          # Express routes
+│   └── utils/
+├── public/                # Static assets
+├── src/
+│   ├── pages/             # Inertia page components
+│   ├── assets/
+│   ├── main.jsx           # Client entry point
+│   └── ssr.jsx            # SSR entry point
+├── index.html             # HTML template
+├── vite.config.js         # Vite configuration
+└── server.js              # Express server entry point
+```
+
+---
+
+## ⚡ Scripts
+
+```json
+"scripts": {
+  "dev": "nodemon server.js",
+  "build": "npm run build:client && npm run build:ssr",
+  "build:client": "vite build --outDir build/client --ssrManifest",
+  "build:ssr": "vite build --outDir build/ssr --ssr src/ssr.jsx",
+  "serve": "NODE_ENV=production node server.js"
+}
+```
+
+---
+
+## License
+
+MIT © 2025 Mahendra Chavda

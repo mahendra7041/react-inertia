@@ -9,7 +9,7 @@ A starter template to build modern single-page applications with **Express.js**,
 ### 1. Create a New Project Using the Template
 
 ```bash
-npm create vite@latest my-inertia-app -- --template github:/mahendra7041/react-inertia
+npx degit mahendra7041/react-inertia my-inertia-app
 ```
 
 Replace `my-inertia-app` with your desired project name.

@@ -1,13 +1,12 @@
-import { StrictMode } from "react";
+import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App.jsx";
-import "./index.css";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
-);
+createInertiaApp({
+  resolve: (name) => {
+    const pages = import.meta.glob("./pages/**/*.jsx", { eager: true });
+    return pages[`./pages/${name}.jsx`];
+  },
+  setup({ el, App, props }) {
+    createRoot(el).render(<App {...props} />);
+  },
+});

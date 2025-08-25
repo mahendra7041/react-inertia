@@ -1,17 +1,14 @@
 import ReactDOMServer from "react-dom/server";
-import { StaticRouter } from "react-router-dom";
-import { StrictMode } from "react";
-import App from "./App";
-import "./index.css";
+import { createInertiaApp } from "@inertiajs/react";
 
-export function render(url) {
-  const appHtml = ReactDOMServer.renderToString(
-    <StrictMode url={url}>
-      <StaticRouter>
-        <App />
-      </StaticRouter>
-    </StrictMode>
-  );
-
-  return appHtml;
+export default function render(page) {
+  return createInertiaApp({
+    page,
+    render: ReactDOMServer.renderToString,
+    resolve: (name) => {
+      const pages = import.meta.glob("./pages/**/*.jsx", { eager: true });
+      return pages[`./pages/${name}.jsx`];
+    },
+    setup: ({ App, props }) => <App {...props} />,
+  });
 }
